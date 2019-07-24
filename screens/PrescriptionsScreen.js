@@ -12,42 +12,48 @@ import {
 
 
 
-export default function PrescriptionsScreen() {
-  return (
-    <View style={styles.container}>
-      <View style={styles.PrescriptionInput}>
-        <TextInput
-          style={{ height: 40, width: 250, borderColor: 'gray', borderWidth: 1 }}
-          placeholder="Enter Prescription"
-          placeholderTextColor="#27408B"
-          textAlign='center'
-        />
-        <View style={styles.Submit}> 
-          <TouchableOpacity onPress={handlePress}>
-            <Text>Submit</Text>
-          </TouchableOpacity>
+export default class PrescriptionsScreen extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+
+    }
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style={styles.PrescriptionInput}>
+          <TextInput
+            style={{ height: 40, width: 250, borderColor: 'gray', borderWidth: 1 }}
+            placeholder="Enter Prescription"
+            placeholderTextColor="#27408B"
+            textAlign='center'
+          />
+          <View style={styles.Submit}>
+            <TouchableOpacity onPress={handlePress}>
+              <Text>Submit</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
-    </View>
-  );
+    );
+  }
 }
 
-// phone IP 172.16.21.105
-
 handlePress = async () => {
-  fetch('/api/prescription', {
+  fetch('https://stark-lake-98779.herokuapp.com/api/prescription', {
     method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
     body: JSON.stringify({
-      "Prescriptions": "Oxycodon",
+      Prescription: "Yeet"
     }),
-    headers: 'application/json'
+
   })
-  .then((res) => res.json())
-  .then((resJson)=>{
-    return resJson.Prescription
-  })
-  .then(console.log('Hello World'))
-  .catch(err => console.log(err))
+    .then(console.log('Hello World'))
+    .catch(err => console.log(err))
 }
 
 PrescriptionsScreen.navigationOptions = {
@@ -64,7 +70,7 @@ const styles = StyleSheet.create({
   PrescriptionInput: {
     alignItems: 'center'
   },
-  Submit:{
+  Submit: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'

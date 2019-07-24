@@ -15,6 +15,8 @@ import { MonoText } from '../components/StyledText';
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
+
+    <View style={styles.topBox}></View>       
       <ScrollView
         style={styles.container}
         contentContainerStyle={styles.contentContainer}>
@@ -29,9 +31,7 @@ export default function HomeScreen() {
           />
         </View>
 
-        <View style={{backgroundColor: '#27408B', height:100, width:100}}>
-
-        </View>
+        
 
         <View style={styles.getStartedContainer}>
           
@@ -48,11 +48,12 @@ export default function HomeScreen() {
         </View> */}
       </ScrollView>
 
-      <View style={styles.tabBarInfoContainer}>
+      {/* <View style={styles.tabBarInfoContainer}>
         <Text style={styles.tabBarInfoText}>
           Tab Bar
         </Text>
-      </View>
+      </View> */}
+      <View style={styles.bottomBox}></View>
     </View>
   );
 }
@@ -105,17 +106,27 @@ const styles = StyleSheet.create({
   contentContainer: {
     paddingTop: 30,
   },
+  topBox: {
+    backgroundColor: '#27408B',
+    height: 100,
+    top: 0
+  },
+  bottomBox: {
+    backgroundColor: '#27408B',
+    height: 100,
+    bottom: 0
+  },
   welcomeContainer: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 20,
+    marginBottom: 0,
   },
   welcomeImage: {
     width: 100,
     height: 80,
     resizeMode: 'contain',
-    marginTop: 250,
+    marginTop: 175,
     marginLeft: -10,
   },
   getStartedContainer: {
@@ -166,17 +177,6 @@ const styles = StyleSheet.create({
   },
   navigationFilename: {
     marginTop: 5,
-  },
-  helpContainer: {
-    marginTop: 15,
-    alignItems: 'center',
-  },
-  helpLink: {
-    paddingVertical: 15,
-  },
-  helpLinkText: {
-    fontSize: 14,
-    color: '#2e78b7',
   },
   PrescriptionTracker: {
     fontSize: 28,
