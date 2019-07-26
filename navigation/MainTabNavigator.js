@@ -4,8 +4,8 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
-import PrescriptionsScreen from '../screens/PrescriptionsScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import MedicationsScreen from '../screens/MedicationsScreen';
+import ListsScreen from '../screens/ListsScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -26,7 +26,7 @@ HomeStack.navigationOptions = {
       focused={focused}
       name={
         Platform.OS === 'ios'
-          ? `ios-home${focused ? '' : '-outline'}`
+          ? `ios-home${focused ? 'ios-home' : '-outline'}`
           : 'md-home'
       }
     />
@@ -35,42 +35,42 @@ HomeStack.navigationOptions = {
 
 HomeStack.path = '';
 
-const PrescriptionsStack = createStackNavigator(
+const MedicationsStack = createStackNavigator(
   {
-    Prescriptions: PrescriptionsScreen,
+    Medications: MedicationsScreen,
   },
   config
 );
 
-PrescriptionsStack.navigationOptions = {
-  tabBarLabel: 'Prescription List',
+MedicationsStack.navigationOptions = {
+  tabBarLabel: 'Medication Search',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-medical' : 'md-medical'} />
   ),
 };
 
-PrescriptionsStack.path = '';
+MedicationsStack.path = '';
 
-// const SettingsStack = createStackNavigator(
-//   {
-//     Settings: SettingsScreen,
-//   },
-//   config
-// );
+const ListsStack = createStackNavigator(
+  {
+    Lists: ListsScreen,
+  },
+  config
+);
 
-// SettingsStack.navigationOptions = {
-//   tabBarLabel: 'Settings',
-//   tabBarIcon: ({ focused }) => (
-//     <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
-//   ),
-// };
+ListsStack.navigationOptions = {
+  tabBarLabel: 'Medication List',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-list-box-outline' : 'md-list-box'} />
+  ),
+};
 
-// SettingsStack.path = '';
+ListsStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
-  PrescriptionsStack,
-  // SettingsStack,
+  MedicationsStack,
+  ListsStack,
 });
 
 tabNavigator.path = '';
